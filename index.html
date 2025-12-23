@@ -1,0 +1,52 @@
+<body>
+  <header>
+    <h1>sat</h1>
+  </header>
+
+  <div id="ui">
+    <button
+      data-camera="SOLAR_PANEL_CAM"
+      data-title="Solar Panel"
+      data-text="Yea Solar Panel very cool"
+      data-image="images/SolarPanel.jpg">
+      Solar Panel
+    </button>
+    <button
+      data-camera="ION_BEAM_CAM"
+      data-title="Ion Beam"
+      data-text="Shoot small positive stuff"
+      data-image="images/IonBeam.jpg">
+      Ion Beam
+    </button>
+    <button
+      data-camera="CHASIS_CAM"
+      data-title="CubeSat 12U Chasis"
+      data-text="like a box to hold stuff so it dosent fall out"
+      data-image="images/Chasis.jpg">
+      Chasis
+    </button>
+    <button data-camera="ION_BEAM_CAM">RESET_CAMERA</button>
+
+
+  </div>
+<div id="loadingScreen">
+  <div id="loadingBox">
+    <div id="loadingText">Loading model... Please wait</div>
+    <div id="loadingBarContainer">
+      <div id="loadingBar"></div>
+    </div>
+  </div>
+</div>
+
+<div id="container3D"></div>
+
+<div id="infoPanel" class="panel hidden">
+  <button class="close-btn">&times;</button>
+  <h2 id="modalTitle"></h2>
+  <img id="modalImage" />
+  <p id="modalText"></p>
+</div>
+
+
+  <script type="module" src="main.js"></script>
+</body>
