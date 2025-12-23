@@ -102,10 +102,9 @@ loader.load(
 
     object.traverse((child) => {
     if (child.isMesh) {
-      // Store original material ON the mesh itself
+      // Store orig mats ON  mesh 
       child.userData.originalMaterial = child.material.clone();
 
-      // Optional: ensure proper lighting response
       child.material = child.material.clone();
       child.material.needsUpdate = true;
 
@@ -332,3 +331,4 @@ document.addEventListener("mousemove", (e) => {
 
 //Start the 3D rendering
 animate();
+
