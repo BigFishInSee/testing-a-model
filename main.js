@@ -38,8 +38,7 @@ let cameraTargetQuat = null;
 
 
 const DIM_COLOR = new THREE.Color(0x555555);
-const HIGHLIGHT_COLOR = new THREE.Color(0x4caf50);
-
+const HIGHLIGHT_COLOR = new THREE.Color(0x6fa8dc);
 function resetMaterials() {
   Object.values(parts).forEach(mesh => {
     mesh.material = mesh.userData.originalMaterial.clone();
@@ -52,16 +51,17 @@ function focusOnPart(targetName) {
   Object.entries(parts).forEach(([name, mesh]) => {
     const mat = mesh.userData.originalMaterial.clone();
 
-    if (name === targetName) {
-      mat.color = HIGHLIGHT_COLOR.clone();
-      mat.emissive = HIGHLIGHT_COLOR.clone().multiplyScalar(0.4);
-      mat.emissiveIntensity = 0.6;
-      mat.transparent = false;
-      mat.opacity = 1;
-    } else {
-      mat.color = DIM_COLOR.clone();
-      mat.transparent = true;
-      mat.opacity = 0.15;
+    if (name === targetName) { 
+      mat.color = HIGHLIGHT_COLOR.clone(); 
+      mat.emissive = HIGHLIGHT_COLOR.clone().multiplyScalar(0.4); 
+      mat.emissiveIntensity = 0.6; 
+      mat.transparent = false; 
+      mat.opacity = 1; 
+    } 
+    else { 
+      mat.color = DIM_COLOR.clone(); 
+      mat.transparent = true; 
+      mat.opacity = 0.15; 
     }
 
     mesh.material = mat;
@@ -72,8 +72,21 @@ function focusOnPart(targetName) {
 //settings
 const cameraFocusMap = {
   SOLAR_PANEL_CAM: "SOLAR_PANEL",
-  ION_BEAM_CAM: "ION_BEAM_T",
-  CHASIS_CAM: "FRAME"
+  ION_BEAM_CAM: "ION_BEAM",
+  FRAME_CAM: "FRAME",
+  GYRO_CAM: "GYRO",
+  ALTITUTE_SYSTEM_CAM: "ALTITUTE_SYSTEM",
+  BATTERY_CAM:"BATTERY",
+  FLIGHT_COMP_CAM: "FLIGHT_COMP",
+  FOV_CAM: "FOV",
+  FUEL_CAM: "FUEL",
+  GNSS_CAM: "GNSS",
+  IMU_CAM: "IMU",
+  LIDAR_CAM: "LIDAR",
+  PILASMA_CAM: "PILASMA",
+  RADIO_CAM: "RADIO",
+  STAR_TRACKER_CAM: "STAR_TRACKER",
+  SUN_SENSOR_CAM: "SUN_SENSOR"
 };
 
 
@@ -102,7 +115,7 @@ loader.load(
 
     object.traverse((child) => {
     if (child.isMesh) {
-      // Store orig mats ON  mesh 
+      // Store original material ON the mesh itself
       child.userData.originalMaterial = child.material.clone();
 
       child.material = child.material.clone();
@@ -209,6 +222,11 @@ if (objToRender === "Untitled") {
   controls = new OrbitControls(camera, renderer.domElement);
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 function animate() {
   
   requestAnimationFrame(animate);
@@ -260,18 +278,17 @@ window.addEventListener("resize", function () {
 
 
 document.querySelectorAll("#ui button").forEach(button => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", async () => {
     const camName = button.dataset.camera;
     snapToPresetCamera(camName);
 
     // RESET
     if (button.textContent.includes("RESET")) {
-    resetMaterials();
-    panel.style.display = "none";
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    return;
-}
-
+      resetMaterials();
+      panel.style.display = "none";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
 
     // FOCUS
     const partName = cameraFocusMap[camName];
@@ -288,17 +305,16 @@ document.querySelectorAll("#ui button").forEach(button => {
       panelOpen = true;
       panel.style.display = "block";
 
+      await sleep(500);
+
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           panel.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
-
-
     }
   });
 });
-
 
 closeBtn.addEventListener("click", () => {
   panelOpen = false;
@@ -311,7 +327,15 @@ closeBtn.addEventListener("click", () => {
     }
   }, 600);
 });
+document.getElementById("resetCameraBtn").addEventListener("click", () => {
+  resetMaterials();
+  snapToPresetCamera("ION_BEAM_CAM");
 
+  panelOpen = false;
+  panel.style.display = "none";
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
 document.addEventListener("mouseup", (e) => {
   if (e.button === 0) {
@@ -331,4 +355,3 @@ document.addEventListener("mousemove", (e) => {
 
 //Start the 3D rendering
 animate();
-
