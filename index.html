@@ -16,16 +16,108 @@
       data-title="Ion Beam"
       data-text="Shoot small positive stuff"
       data-image="images/IonBeam.jpg">
-      Ion Beam
+      Ion Thruster
     </button>
     <button
-      data-camera="CHASIS_CAM"
+      data-camera="FRAME_CAM"
       data-title="CubeSat 12U Chasis"
       data-text="like a box to hold stuff so it dosent fall out"
       data-image="images/Chasis.jpg">
       Chasis
     </button>
-    <button data-camera="ION_BEAM_CAM">RESET_CAMERA</button>
+    <button
+      data-camera="GYRO_CAM"
+      data-title="XACT-100 Momentum Wheels"
+      data-text="spin thing"
+      data-image="images/Gyro.jpg">
+      Momentum Wheels
+    </button>
+    <button
+      data-camera="ALTITUTE_SYSTEM_CAM"
+      data-title="XACT-100 Altitute control system"
+      data-text="Torque rods and star+sun tracker for orientation"
+      data-image="images/Gyro.jpg">
+      Altitute Control
+    </button>
+    <button
+      data-camera="BATTERY_CAM"
+      data-title="GomSpace NanoPower P31u Battery"
+      data-text="Charge"
+      data-image="images/Battery.jpg">
+      Battery
+    </button>
+    <button
+      data-camera="FLIGHT_COMP_CAM"
+      data-title="GomSpace NanoMind A3200 Flight Computer"
+      data-text="Brain"
+      data-image="images/FlightComputer.jpg">
+      Flight Computer
+    </button>
+    <button
+      data-camera="FOV_CAM"
+      data-title="TriScape50 High FOV Camera"
+      data-text="Work w lidar to locate object"
+      data-image="images/FOV.jpg">
+      Camera
+    </button>
+    <button
+      data-camera="FUEL_CAM"
+      data-title="Fuel container"
+      data-text="Iodine Fuel For Thrusters"
+      data-image="images/IonBeam.jpg">
+      Fuel
+    </button>
+    <button
+      data-camera="GNSS_CAM"
+      data-title="OEM719 GNSS"
+      data-text="Determines Location"
+      data-image="images/GNSS.jpg">
+      GNSS
+    </button>
+    <button
+      data-camera="IMU_CAM"
+      data-title="6DOF IMU 4 click"
+      data-text="Determines Rotation"
+      data-image="images/IMU.jpg">
+      IMU
+    </button>
+    <button
+      data-camera="LIDAR_CAM"
+      data-title="Aeries II LIDAR"
+      data-text="Works w camera to determine positon and velocity of target"
+      data-image="images/lidar.jpg">
+      LIDAR
+    </button>
+    <button
+      data-camera="PILASMA_CAM"
+      data-title="PILASMA Flight Model"
+      data-text="Data collection"
+      data-image="images/pilasma.jpg">
+      piLASMA
+    </button>
+    <button
+      data-camera="RADIO_CAM"
+      data-title="Radio"
+      data-text="S-band and UHF radio"
+      data-image="images/radio.jpg">
+      Radio
+    </button>
+    <button
+      data-camera="STAR_TRACKER_CAM"
+      data-title="Auriga Star Tracker"
+      data-text="secondary star tracker"
+      data-image="images/StarTracker.jpg">
+      Star Tracker
+    </button>
+    <button
+      data-camera="SUN_SENSOR_CAM"
+      data-title="NXSS2v01 Sun Sensor"
+      data-text="secondary Sun Sensor"
+      data-image="images/SunSensor.jpg">
+      SunSensor
+    </button>
+
+    <button data-camera="ION_BEAM_CAM">RESET_VIEW</button>
 
 
   </div>
@@ -39,7 +131,9 @@
 </div>
 
 <div id="container3D"></div>
-
+<div id="resetContainer">
+  <button id="resetCameraBtn">RESET VIEW</button>
+</div>
 <div id="infoPanel" class="panel hidden">
   <button class="close-btn">&times;</button>
   <h2 id="modalTitle"></h2>
