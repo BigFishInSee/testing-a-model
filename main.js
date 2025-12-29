@@ -299,7 +299,7 @@ document.querySelectorAll("#ui button").forEach(button => {
     // INFO PANEL
     if (button.dataset.title) {
       modalTitle.textContent = button.dataset.title;
-      modalText.textContent = button.dataset.text;
+      modalText.innerHTML = button.dataset.text;
       modalImage.src = button.dataset.image;
 
       panelOpen = true;
@@ -355,3 +355,4 @@ document.addEventListener("mousemove", (e) => {
 
 //Start the 3D rendering
 animate();
+
