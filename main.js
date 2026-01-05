@@ -126,15 +126,12 @@ loader.load(
 
       parts[child.name] = child;
     }
-    if (child.isMesh && child.material.isMeshStandardMaterial) {
-      child.material.metalness = Math.min(child.material.metalness, 0.6);
-      child.material.roughness = Math.max(child.material.roughness, 0.35);
-    }
+
     if (child.isCamera) {
       presetCameras[child.name] = child;
     }
-
   });
+
 
 
     //hide 
@@ -207,13 +204,7 @@ function resetAllParts() {
   });
 }
 
-const renderer = new THREE.WebGLRenderer({
-  alpha: false,
-  antialias: true
-});
-renderer.setClearColor(0x000000, 1); // solid black
-
-//const renderer = new THREE.WebGLRenderer({ alpha: true }); 
+const renderer = new THREE.WebGLRenderer({ alpha: true }); 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
@@ -226,19 +217,11 @@ topLight.position.set(500, 500, 500)
 topLight.castShadow = true;
 scene.add(topLight);
 
-//const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
-//scene.add(ambientLight);
-
-
-
-
-// VERY faint ambient (just to avoid pitch black)
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.08);
+const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
 scene.add(ambientLight);
 
-renderer.outputColorSpace = THREE.SRGBColorSpace;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1;
+
+
 
 
 if (objToRender === "Untitled") {
@@ -378,14 +361,6 @@ document.addEventListener("mousemove", (e) => {
 
 //Start the 3D rendering
 animate();
-
-
-
-
-
-
-
-
 
 
 
