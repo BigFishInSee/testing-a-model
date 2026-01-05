@@ -7,6 +7,8 @@ let controlsTargetPos = null;
 
 let panelOpen = false;
 
+const modelToLoad = "Untitledtest"
+
 const parts = {};
 const presetCameras = {};
 const scene = new THREE.Scene();
@@ -99,14 +101,14 @@ const CAMERA_LERP_SPEED = 0.09;
 
 
 
-let objToRender = 'Untitled';
+let objToRender = 'Untitledtest';
 
 const loader = new GLTFLoader();
 const loadingScreen = document.getElementById("loadingScreen");
 const loadingBar = document.getElementById("loadingBar");
 
 loader.load(
-  'Untitled.glb',
+  'Untitledtest.glb',
 
   //N LOAD
   function (gltf) {
@@ -207,7 +209,7 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 document.getElementById("container3D").appendChild(renderer.domElement);
 
-camera.position.z = objToRender === "Untitled" ? 25 : 500;
+camera.position.z = objToRender === "Untitledtest" ? 25 : 500;
 
 const topLight = new THREE.DirectionalLight(0xffffff, 1); 
 topLight.position.set(500, 500, 500) 
@@ -218,7 +220,10 @@ const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
 scene.add(ambientLight);
 
 
-if (objToRender === "Untitled") {
+
+
+
+if (objToRender === "Untitledtest") {
   controls = new OrbitControls(camera, renderer.domElement);
 }
 
@@ -355,4 +360,5 @@ document.addEventListener("mousemove", (e) => {
 
 //Start the 3D rendering
 animate();
+
 
