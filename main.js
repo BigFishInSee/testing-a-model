@@ -126,7 +126,10 @@ loader.load(
 
       parts[child.name] = child;
     }
-
+    if (child.isMesh && child.material.isMeshStandardMaterial) {
+      child.material.metalness = Math.min(child.material.metalness, 0.6);
+      child.material.roughness = Math.max(child.material.roughness, 0.35);
+    }
     if (child.isCamera) {
       presetCameras[child.name] = child;
     }
@@ -204,6 +207,7 @@ function resetAllParts() {
   });
 }
 
+
 const renderer = new THREE.WebGLRenderer({ alpha: true }); 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -212,15 +216,31 @@ document.getElementById("container3D").appendChild(renderer.domElement);
 
 camera.position.z = objToRender === "Untitled" ? 25 : 500;
 
-const topLight = new THREE.DirectionalLight(0xffffff, 1); 
-topLight.position.set(500, 500, 500) 
-topLight.castShadow = true;
-scene.add(topLight);
+//const topLight = new THREE.DirectionalLight(0xffffff, 1); 
+//topLight.position.set(500, 500, 500) 
+//topLight.castShadow = true;
+//scene.add(topLight);
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+//const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+//scene.add(ambientLight);
+
+
+//MAIN LIGHT
+const sunLight = new THREE.DirectionalLight(0xffffff, 1.2);
+sunLight.position.set(10, 5, 10);
+scene.add(sunLight);
+
+//FILL 
+const fillLight = new THREE.DirectionalLight(0x8899ff, 0.2);
+fillLight.position.set(-5, -3, -5);
+scene.add(fillLight);
+
+// TINY ambient so no shadow
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.15);
 scene.add(ambientLight);
 
-
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
 
 
 
@@ -361,6 +381,7 @@ document.addEventListener("mousemove", (e) => {
 
 //Start the 3D rendering
 animate();
+
 
 
 
