@@ -133,11 +133,11 @@ loader.load(
     if (child.isCamera) {
       presetCameras[child.name] = child;
     }
-      scene.environment = gltf.scene.environment;
-      scene.background = gltf.scene.environment;
+
   });
 
-
+    scene.environment = gltf.scene.environment;
+    scene.background = gltf.scene.environment;
 
     //hide 
     loadingScreen.style.opacity = "0";
@@ -383,6 +383,7 @@ document.addEventListener("mousemove", (e) => {
 
 //Start the 3D rendering
 animate();
+
 
 
 
