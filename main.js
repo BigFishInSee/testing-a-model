@@ -221,19 +221,16 @@ document.getElementById("container3D").appendChild(renderer.domElement);
 
 camera.position.z = objToRender === "Untitled" ? 25 : 500;
 
-//const topLight = new THREE.DirectionalLight(0xffffff, 1); 
-//topLight.position.set(500, 500, 500) 
-//topLight.castShadow = true;
-//scene.add(topLight);
+const topLight = new THREE.DirectionalLight(0xffffff, 1); 
+topLight.position.set(500, 500, 500) 
+topLight.castShadow = true;
+scene.add(topLight);
 
 //const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
 //scene.add(ambientLight);
 
 
-// SUN (main light)
-const sunLight = new THREE.DirectionalLight(0xffffff, 1.0);
-sunLight.position.set(5, 3, 5);
-scene.add(sunLight);
+
 
 // VERY faint ambient (just to avoid pitch black)
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.08);
@@ -241,7 +238,7 @@ scene.add(ambientLight);
 
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 0.85;
+renderer.toneMappingExposure = 1;
 
 
 if (objToRender === "Untitled") {
@@ -381,6 +378,7 @@ document.addEventListener("mousemove", (e) => {
 
 //Start the 3D rendering
 animate();
+
 
 
 
