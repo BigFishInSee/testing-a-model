@@ -133,6 +133,8 @@ loader.load(
     if (child.isCamera) {
       presetCameras[child.name] = child;
     }
+      scene.environment = gltf.scene.environment;
+      scene.background = gltf.scene.environment;
   });
 
 
@@ -242,8 +244,7 @@ scene.add(ambientLight);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 0.85;
-scene.environment = gltf.scene.environment;
-scene.background = gltf.scene.environment;
+
 
 if (objToRender === "Untitledtest") {
   controls = new OrbitControls(camera, renderer.domElement);
@@ -382,6 +383,7 @@ document.addEventListener("mousemove", (e) => {
 
 //Start the 3D rendering
 animate();
+
 
 
 
