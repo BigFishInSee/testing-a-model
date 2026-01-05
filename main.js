@@ -207,8 +207,13 @@ function resetAllParts() {
   });
 }
 
+const renderer = new THREE.WebGLRenderer({
+  alpha: false,
+  antialias: true
+});
+renderer.setClearColor(0x000000, 1); // solid black
 
-const renderer = new THREE.WebGLRenderer({ alpha: true }); 
+//const renderer = new THREE.WebGLRenderer({ alpha: true }); 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
@@ -225,23 +230,18 @@ camera.position.z = objToRender === "Untitledtest" ? 25 : 500;
 //scene.add(ambientLight);
 
 
-//MAIN LIGHT
-const sunLight = new THREE.DirectionalLight(0xffffff, 1.2);
-sunLight.position.set(10, 5, 10);
+// SUN (main light)
+const sunLight = new THREE.DirectionalLight(0xffffff, 1.0);
+sunLight.position.set(5, 3, 5);
 scene.add(sunLight);
 
-//FILL 
-const fillLight = new THREE.DirectionalLight(0x8899ff, 0.2);
-fillLight.position.set(-5, -3, -5);
-scene.add(fillLight);
-
-// TINY ambient so no shadow
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.15);
+// VERY faint ambient (just to avoid pitch black)
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.08);
 scene.add(ambientLight);
 
+renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.0;
-
+renderer.toneMappingExposure = 0.85;
 
 
 if (objToRender === "Untitledtest") {
@@ -381,6 +381,7 @@ document.addEventListener("mousemove", (e) => {
 
 //Start the 3D rendering
 animate();
+
 
 
 
