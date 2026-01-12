@@ -23,7 +23,7 @@ distances = []
 t = 0
 while t < t_max:
     
-    #Longer = less beam cuz far dont ask me how I got this my dad says he uses this for his ultrasounding work
+    #Longer = less beam 
     F = eta * beamForce0 / (1 + d/d0)**2
     #accel from momentum trans
     a = F / massTarget
@@ -56,3 +56,4 @@ plt.show()
 
 print(f"Final Δv : {velocities[-1]:.4f} m/s")
 print(f"Final separation distance: {distances[-1]:.2f} m")
+
