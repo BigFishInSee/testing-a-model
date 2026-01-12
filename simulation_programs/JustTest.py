@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 massTarget = 0.0135
 beamForce0 = 2e-3
 eta = 0.7 #cupling
-d0 = 10 #Divergence scale? i think thats the translation
+d0 = 10 #Divergence scale
 
 dt = 0.1#time step for calcs
 t_max = 60 #max contact time
@@ -56,4 +56,5 @@ plt.show()
 
 print(f"Final Δv : {velocities[-1]:.4f} m/s")
 print(f"Final separation distance: {distances[-1]:.2f} m")
+
 
